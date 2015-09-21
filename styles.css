@@ -1,0 +1,55 @@
+body {
+	background-color: rgb(255, 233, 223);
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 200;
+	color: rgb(10, 99, 90);
+	padding: 50px;
+	padding-top: 0;
+}
+
+h1 {
+	text-align: center;
+	font-weight: 700;
+	margin-bottom: 10px;
+	
+}
+
+#headingContainer {
+	font-weight: 700;
+	font-size: 18px;
+	color: rgb(99, 38, 10);
+	margin-top: 10px;
+}
+
+p {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.theUser {
+	float: left;
+	font-weight: 400;
+	padding-top: 15px;	
+}
+
+.theUser:hover {
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.theTime {
+	text-align: right;
+	font-size: 10px;
+	padding-top: 23px;
+}
+
+#refreshButton {
+	padding: 5px 20px 5px 20px;
+	background-color: rgb(217, 184, 169);
+	color: rgb(99, 38, 10);;
+}
+
+#refreshButton:hover {
+	cursor: pointer;
+
+}

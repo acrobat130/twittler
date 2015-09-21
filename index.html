@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,700' rel='stylesheet' type='text/css'>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <h1>Twittler Feed</h1>
-    <div id="headingContainer"></div>
     <p>
       <button id="refreshButton">Get New Tweets</button>
     </p>
+    <div id="headingContainer"></div>
     <div id="tweetList">
     </div>
     <script>
@@ -40,7 +41,7 @@
         var dayPortion = getStringForDay(date.getDay());
         var timePortion = getStringForHoursAndMinutes(date.getHours(), date.getMinutes());
 
-        return dayPortion  + timePortion;
+        return dayPortion + ' ' + timePortion;
       }
 
       // general show tweets function
@@ -86,7 +87,7 @@
         var $user = $('<div class="theUser">').text(tweet.user);
         var $time = $('<div class="theTime">').text(timeString);
 
-        $tweet.append($user, $message, $time);
+        $tweet.append($user, $time, $message);
 
         $user.on('click', function() {
           revealTweetsOfUser(tweet.user);
