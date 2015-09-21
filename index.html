@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>My Feed</h1>
-    <div>by Shanna The Awesome Sullivan</div>
+    <h1>Twittler Feed</h1>
+    <div id="headingText"></div>
     <p>
       <button id="refreshButton">Get New Tweets</button>
     </p>
@@ -43,6 +43,7 @@
         return dayPortion  + timePortion;
       }
 
+      // general show tweets function
       var showTweets = function(arrayOfTweets) {
         var $tweetList = $('#tweetList');
         $tweetList.children().remove('');
@@ -58,11 +59,20 @@
       // show user tweets
       var revealTweetsOfUser = function(username) {
         var arrayOfTweets = streams.users[username];
+        var $heading = $('#headingText');
+        $heading.children().remove('');
+        $heading.append('<div>User Tweets</div>');
         showTweets(arrayOfTweets);
+
+
       }
 
+      // show all tweets
       var revealTweetsOfHome = function() {
           var arrayOfTweets = streams.home;
+          var $heading = $('#headingText');
+          $heading.children().remove('');
+          $heading.append('<div>All Tweets</div>');
           showTweets(arrayOfTweets);
       }
 
@@ -85,6 +95,7 @@
         return $tweet;
       }
 
+      // show all tweets on button click
       $(document).ready(function(){
         var refreshHandler = function() {
           revealTweetsOfHome();
@@ -93,10 +104,6 @@
         $('#refreshButton').on('click', refreshHandler);
 
 
-
-
-        // click on username to see that user's timeline
-        // view streams.users.shawndrost
 
       });
 
