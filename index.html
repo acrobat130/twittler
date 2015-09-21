@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Twittler Feed</h1>
-    <div id="headingText"></div>
+    <div id="headingContainer"></div>
     <p>
       <button id="refreshButton">Get New Tweets</button>
     </p>
@@ -59,9 +59,9 @@
       // show user tweets
       var revealTweetsOfUser = function(username) {
         var arrayOfTweets = streams.users[username];
-        var $heading = $('#headingText');
+        var $heading = $('#headingContainer');
         $heading.children().remove('');
-        $heading.append('<div>User Tweets</div>');
+        $heading.append('<div class="headingText">User Tweets</div>');
         showTweets(arrayOfTweets);
 
 
@@ -70,9 +70,9 @@
       // show all tweets
       var revealTweetsOfHome = function() {
           var arrayOfTweets = streams.home;
-          var $heading = $('#headingText');
+          var $heading = $('#headingContainer');
           $heading.children().remove('');
-          $heading.append('<div>All Tweets</div>');
+          $heading.append('<div class="headingText">All Tweets</div>');
           showTweets(arrayOfTweets);
       }
 
