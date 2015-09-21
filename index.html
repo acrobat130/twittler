@@ -3,22 +3,100 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <h1>My Feed</h1>
+    <div>by Shanna The Awesome Sullivan</div>
+    <p>
+      <button id="refreshButton">Get New Tweets</button>
+    </p>
+    <div id="tweetList">
+    </div>
     <script>
+      var getStringForDay = function(dayIndex) {
+        var daysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
+        return daysOfWeek[dayIndex];
+     }
+
+      var getStringForHoursAndMinutes = function(hours, minutes) {
+        var minutesString = ((minutes < 10) ? "0" : "") + minutes;
+        var amPm;
+
+        if (hours > 11) {
+          hours = hours - 12;
+          amPm = "pm";
+        } else {
+          amPm = "am";
+        }
+
+        if (hours == 0) {
+          hours = 12;
+        }
+        return hours + ":" + minutesString + " " + amPm;
+      }
+
+      var getStringForDate = function(date) {
+        var dayPortion = getStringForDay(date.getDay());
+        var timePortion = getStringForHoursAndMinutes(date.getHours(), date.getMinutes());
+
+        return dayPortion  + timePortion;
+      }
+
+      var showTweets = function(arrayOfTweets) {
+        var $tweetList = $('#tweetList');
+        $tweetList.children().remove('');
+
+          var index = arrayOfTweets.length - 1;
+          while(index >= 0){
+            var tweet = arrayOfTweets[index];
+            makeDiv(tweet).appendTo($tweetList);
+            index -= 1;
+          }
+      }
+
+      // show user tweets
+      var revealTweetsOfUser = function(username) {
+        var arrayOfTweets = streams.users[username];
+        showTweets(arrayOfTweets);
+      }
+
+      var revealTweetsOfHome = function() {
+          var arrayOfTweets = streams.home;
+          showTweets(arrayOfTweets);
+      }
+
+      // make div with tweet
+      var makeDiv = function(tweet) {
+        var createdAt = tweet.created_at;
+        var timeString = getStringForDate(createdAt);
+
+        var $tweet = $('<div class="theTweet">');
+        var $message = $('<div class="msg">').text(tweet.message);
+        var $user = $('<div class="theUser">').text(tweet.user);
+        var $time = $('<div class="theTime">').text(timeString);
+
+        $tweet.append($user, $message, $time);
+
+        $user.on('click', function() {
+          revealTweetsOfUser(tweet.user);
+        });
+
+        return $tweet;
+      }
 
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
+        var refreshHandler = function() {
+          revealTweetsOfHome();
         }
+
+        $('#refreshButton').on('click', refreshHandler);
+
+
+
+
+        // click on username to see that user's timeline
+        // view streams.users.shawndrost
 
       });
 
