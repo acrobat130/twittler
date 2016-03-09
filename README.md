@@ -3,9 +3,10 @@ This is a project I completed as a student at [Telegraph Academy](http://telegra
 
 # How to use this repository
 
-To view the Twittler feed, do one of the following:
-  1. Open the `index.html` file in your Chrome browser.
-  2. In your terminal, navigate to this repository and type `python -m SimpleHTTP Server`. In your Chrome browser, navigate to `localhost:8000`.
+1. Fork and clone this repository.
+2. To view the Twittler feed, do one of the following:
+  * Open the `index.html` file in your Chrome browser.
+  * In your terminal, navigate to this repository and type `python -m SimpleHTTP Server`. In your Chrome browser, navigate to `localhost:8000`.
 
 # Twittler functionality
 
